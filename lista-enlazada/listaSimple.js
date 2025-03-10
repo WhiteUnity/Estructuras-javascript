@@ -1,66 +1,85 @@
-class Node {
-  constructor(value, next) {
-    this.value = value;
-    this.next = next;
+// Clase que representa un nodo en la lista enlazada
+class Nodo {
+  constructor(valor, siguiente) {
+    this.valor = valor; // Almacena el valor del nodo
+    this.siguiente = siguiente; // Referencia al siguiente nodo en la lista (null si es el último)
   }
 }
 
-class LinkedList {
+// Clase que representa una lista enlazada
+class ListaEnlazada {
   constructor() {
-    this.head = null;
+    this.cabeza = null; // Inicializa la lista con cabeza = null (lista vacía)
   }
 
-  insertNode(value) {
-    const newNode = new Node(value, null);
-    if (this.head === null) {
-      this.head = newNode;
-      return
+  // Método para insertar un nuevo nodo al final de la lista
+  insertarNodo(valor) {
+    const nuevoNodo = new Nodo(valor, null); // Crea un nuevo nodo con el valor proporcionado
+    if (this.cabeza === null) {
+      // Si la lista está vacía, el nuevo nodo se convierte en la cabeza (cabeza)
+      this.cabeza = nuevoNodo;
+      return;
     }
 
-    let current = this.head;
-    while (current.next) {
-      current = current.next;
+    // Si la lista no está vacía, recorre hasta el último nodo
+    let actual = this.cabeza;
+    while (actual.siguiente) {
+      actual = actual.siguiente;
     }
-    current.next = newNode;
+    // Una vez en el último nodo, asigna el nuevo nodo como su siguiente nodo
+    actual.siguiente = nuevoNodo;
   }
 
-  findNode(value) {
-    let current = this.head;
-    while (current) {
-      if (current.value === value) {
-        return current;
+  // Método para buscar un nodo con un valor específico
+  buscarNodo(valor) {
+    let actual = this.cabeza; // Comienza desde la cabeza de la lista
+    while (actual) {
+      if (actual.valor === valor) {
+        // Si encuentra un nodo con el valor buscado, lo devuelve
+        return actual;
       }
-      current = current.next;
+      actual = actual.siguiente; // Avanza al siguiente nodo
     }
-    return null;
+    return null; // Si no encuentra el valor, devuelve null
   }
 
-  deleteNode(value) {
-    if (this.head.value === value) {
-      this.head = this.head.next;
-      return
+  // Método para eliminar un nodo con un valor específico
+  eliminarNodo(valor) {
+    if (this.cabeza.valor === valor) {
+      // Si el nodo a eliminar es la cabeza, mueve la cabeza al siguiente nodo
+      this.cabeza = this.cabeza.siguiente;
+      return;
     }
-    let current = this.head;
-    while (current.next) {
-      if (current.next.value === value) {
-        current.next = current.next.next;
+
+    // Si el nodo a eliminar no es la cabeza, recorre la lista
+    let actual = this.cabeza;
+    while (actual.siguiente) {
+      if (actual.siguiente.valor === valor) {
+        // Si encuentra el nodo a eliminar, ajusta el puntero siguiente del nodo anterior
+        actual.siguiente = actual.siguiente.siguiente;
         return;
       }
-      current = current.next;
+      actual = actual.siguiente; // Avanza al siguiente nodo
     }
   }
 
-  display() {
-    let current = this.head;
-    while (current) {
-      console.log(current.value);
-      current = current.next;
+  // Método para mostrar todos los valores de la lista
+  mostrar() {
+    let actual = this.cabeza; // Comienza desde la cabeza de la lista
+    while (actual) {
+      console.log(actual.valor); // Imprime el valor del nodo actual
+      actual = actual.siguiente; // Avanza al siguiente nodo
     }
   }
 }
 
+// Ejemplo de uso:
+const lista = new ListaEnlazada();
+lista.insertarNodo(10); // Inserta 10
+lista.insertarNodo(20); // Inserta 20
+lista.insertarNodo(30); // Inserta 30
+lista.mostrar(); // Muestra: 10, 20, 30
 
-
-
-
-
+console.log(lista.buscarNodo(20)); // Busca y devuelve el nodo con valor 20
+lista.eliminarNodo(20); // Elimina el nodo con valor 20
+lista.mostrar(); // Muestra: 10, 30
