@@ -1,89 +1,66 @@
-class Nodo {
-  constructor(valor, siguiente) {
-    // Valor del nodo
-    this.valor = valor;
-    // Referencia al siguiente nodo
-    this.siguiente = siguiente;
+class Node {
+  constructor(value, next) {
+    this.value = value;
+    this.next = next;
   }
 }
 
-class ListaEnlazada {
+class LinkedList {
   constructor() {
-    // Cabeza de la lista enlazada
-    this.cabeza = null;
-<<<<<<< Tabnine <<<<<<<
-  /**//+
-   * Retrieves an element from the 2D matrix at the specified position.//+
-   *//+
-   * @param {number} fila - The row index of the element to retrieve.//+
-   * @param {number} columna - The column index of the element to retrieve.//+
-   * @returns {*} The element at the specified position in the matrix.//+
-   *///+
-  obtenerElemento(fila, columna) {//+
-    return this.matriz[fila][columna];//+
-  }//+
->>>>>>> Tabnine >>>>>>>// {"conversationId":"1fec1202-76a7-467e-b6b6-6c4868820931","source":"instruct"}
+    this.head = null;
   }
 
-  // Método para insertar un nodo al final de la lista
-  insertarNodo(valor) {
-    // Crear un nuevo nodo con el valor dado
-    const nuevoNodo = new Nodo(valor, null);
-    // Si la cabeza es null, el nuevo nodo se convierte en la cabeza
-    if (this.cabeza === null) {
-      this.cabeza = nuevoNodo;
-      return;
+  insertNode(value) {
+    const newNode = new Node(value, null);
+    if (this.head === null) {
+      this.head = newNode;
+      return
     }
 
-    // Si no, recorrer la lista hasta encontrar el último nodo
-    let actual = this.cabeza;
-    while (actual.siguiente) {
-      actual = actual.siguiente;
+    let current = this.head;
+    while (current.next) {
+      current = current.next;
     }
-    // Insertar el nuevo nodo al final de la lista
-    actual.siguiente = nuevoNodo;
+    current.next = newNode;
   }
 
-  // Método para encontrar un nodo con un valor específico
-  encontrarNodo(valor) {
-    let actual = this.cabeza;
-    // Recorrer la lista hasta encontrar el nodo con el valor dado
-    while (actual) {
-      if (actual.valor === valor) {
-        return actual;
+  findNode(value) {
+    let current = this.head;
+    while (current) {
+      if (current.value === value) {
+        return current;
       }
-      actual = actual.siguiente;
+      current = current.next;
     }
-    // Si no se encuentra el nodo, retornar null
     return null;
   }
 
-  // Método para eliminar un nodo con un valor específico
-  eliminarNodo(valor) {
-    // Si el nodo a eliminar es la cabeza
-    if (this.cabeza.valor === valor) {
-      this.cabeza = this.cabeza.siguiente;
-      return;
+  deleteNode(value) {
+    if (this.head.value === value) {
+      this.head = this.head.next;
+      return
     }
-    let actual = this.cabeza;
-    // Recorrer la lista hasta encontrar el nodo anterior al nodo a eliminar
-    while (actual.siguiente) {
-      if (actual.siguiente.valor === valor) {
-        // Eliminar el nodo
-        actual.siguiente = actual.siguiente.siguiente;
+    let current = this.head;
+    while (current.next) {
+      if (current.next.value === value) {
+        current.next = current.next.next;
         return;
       }
-      actual = actual.siguiente;
+      current = current.next;
     }
   }
 
-  // Método para mostrar todos los valores de la lista
-  mostrar() {
-    let actual = this.cabeza;
-    // Recorrer la lista y mostrar cada valor
-    while (actual) {
-      console.log(actual.valor);
-      actual = actual.siguiente;
+  display() {
+    let current = this.head;
+    while (current) {
+      console.log(current.value);
+      current = current.next;
     }
   }
 }
+
+
+
+
+
+
