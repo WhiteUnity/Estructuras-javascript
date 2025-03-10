@@ -17,7 +17,7 @@ Este proyecto implementa una **lista simple** en JavaScript utilizando clases. L
    ```bash
    npm install
 
-   node src/TestSimpleList.js
+   node src/main.js
 
    
 Equipo de trabajo
